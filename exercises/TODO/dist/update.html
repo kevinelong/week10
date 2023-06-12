@@ -59,6 +59,7 @@
         const response = await fetch(baseURI + todoEndPoint + id, optionsObject);
         const data = await response.json();
         console.log(data); //echo back data but now with an ID
+        window.location = "read.html" //back to the list when done updating
     }
 
     function onClickSave(){

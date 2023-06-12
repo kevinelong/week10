@@ -38,10 +38,11 @@
         const response = await fetch(baseURI + todoEndPoint, optionsObject);
         const data = await response.json();
         console.log(data); //echo back data but now with an ID
+        window.location = "read.html"; //return to list after created
     }
 
     function onClickSave(){
-        createTODO(TODOObject(todo_name.value, todo_desc.value, USER_ID));
+        createTODO(TODOObject(todo_name.value, USER_ID));
     }
 
     save.addEventListener("click", onClickSave)
