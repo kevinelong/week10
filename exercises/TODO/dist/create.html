@@ -1,0 +1,51 @@
+<body>
+    <h1>
+        TODO
+    </h1>
+    <a href="index.html">HOME</a>
+    <a href="todo.html">TODO</a>
+    <a href="create.html">Create</a>
+    <a href="read.html">Read List</a>
+    <fieldset>
+        <legend>New TODO:</legend>
+        <label for="todo_name">TODO Name</label>
+        <input type="text" id="todo_name" name="todo_name"><br><br>
+    </fieldset>
+    <button id="save">Save New Item</button>
+</body>
+<script>
+    const baseURI = "https://jsonplaceholder.typicode.com";
+    const todoEndPoint = "/todos/";
+    const USER_ID = 1;
+
+    function TODOObject(title, userId){
+        return {//new object
+            title:title, 
+            userId:userId
+        };
+    }
+
+    async function createTODO(todoObject){
+        const text = JSON.stringify(todoObject);
+        const headers = {
+            'Content-type': 'application/json; charset=UTF-8'
+        };
+        const optionsObject = {
+            method: "POST",
+            body: text,
+            headers: headers,
+        };
+        const response = await fetch(baseURI + todoEndPoint, optionsObject);
+        const data = await response.json();
+        console.log(data); //echo back data but now with an ID
+    }
+
+    function onClickSave(){
+        createTODO(TODOObject(todo_name.value, todo_desc.value, USER_ID));
+    }
+
+    save.addEventListener("click", onClickSave)
+    
+    //TEST
+    // createTODO(TODOObject("test title", "test body", USER_ID))
+</script>

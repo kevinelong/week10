@@ -2,12 +2,14 @@
     <h1>
         TODO
     </h1>
+    <a href="index.html">HOME</a>
+    <a href="todo.html">TODO</a>
+    <a href="create.html">Create</a>
+    <a href="read.html">Read List</a>
     <fieldset>
         <legend>New TODO:</legend>
         <label for="todo_name">TODO Name</label>
         <input type="text" id="todo_name" name="todo_name"><br><br>
-        <label for="todo_desc">Description</label>
-        <textarea type="text" id="todo_desc" name="todo_desc"></textarea><br><br>
     </fieldset>
     <button id="save">Save New Item</button>
 </body>
@@ -16,10 +18,9 @@
     const todoEndPoint = "/todos/";
     const USER_ID = 1;
 
-    function TODOObject(title, body, userId){
+    function TODOObject(title, userId){
         return {//new object
             title:title, 
-            body:body, 
             userId:userId
         };
     }

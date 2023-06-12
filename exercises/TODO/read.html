@@ -1,0 +1,34 @@
+<body>
+    
+    <a href="index.html">HOME</a>
+    <a href="todo.html">TODO</a>
+    <a href="create.html">Create</a>
+    <a href="read.html">Read List</a>
+
+    <h1>Read List of TODOs</h1>
+    
+    <div id="output"></div>
+</body>
+<script>
+    const baseURI = "https://jsonplaceholder.typicode.com";
+    const todoEndPoint = "/todos/";
+    const todoURI = baseURI + todoEndPoint;
+    //READ ALL TODOS
+    async function realAllTODOs(){
+        let response = await fetch(todoURI);
+        const data = await response.json();
+        output.innerHTML = data.map(item => {
+            return `<a href="update.html?id=${ + item.id}">${item.title}</a>`;
+        }).join("<br>") ;
+    }
+    realAllTODOs()
+/*
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  */
+
+</script>
