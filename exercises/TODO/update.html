@@ -32,7 +32,7 @@
     const USER_ID = 1;
 
     async function readExistingTODO(id){
-        const response = await fetch(baseURI + todoEndPoint + id);
+        const response = await fetch(baseURI + todoEndPoint + id); //GET to READ
         const data = await response.json();
         todo_name.value = data.title;
         todo_id.value = data.id;

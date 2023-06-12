@@ -15,7 +15,7 @@
     const todoURI = baseURI + todoEndPoint;
     //READ ALL TODOS
     async function realAllTODOs(){
-        let response = await fetch(todoURI);
+        let response = await fetch(todoURI); //"GET" IS THE DEFAULT USED TO READ
         const data = await response.json();
         output.innerHTML = data.map(item => {
             return `<a href="update.html?id=${ + item.id}">${item.title}</a>`;
