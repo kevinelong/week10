@@ -1,0 +1,61 @@
+<body>
+    <h1>Products</h1>
+    <div id="new_product">
+        <input id="product_name" placeholder="Enter Product Name">
+        <input id="product_price" placeholder="Enter Price">
+        <button id="button">SAVE</button>
+    </div>
+    <div id="all_products"></div>
+</body>
+<script>
+    async function save() {
+        const response = await fetch("/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: `{ "name" : "${product_name.value}", "price" : "${product_price.value}" }`
+        });
+        const data = await response.json();
+        console.log(data);
+        // updateProducts();
+        addProduct(data);
+    }//end save
+
+    button.addEventListener("click", save);
+
+
+    async function removeProduct(button){
+        const response = await fetch("/products", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: `{ "name" : "${button.closest(".product").id}" }`
+        });
+        const data = await response.json();
+        console.log(data);
+        updateProducts();
+        // button.closest(".product").remove();
+    }
+
+    function addProduct(product){
+        //APPEND STRING TEMPLATE CONTAINING OBJECT PROPERTIES, TO BODY HTML
+        all_products.innerHTML += `
+            <div id="${product.name}" class="product">
+                ${product.name} - ${product.price}
+                <button class="remove" onclick="removeProduct(this)">x</button>
+            </div>`;
+    }
+
+    async function updateProducts() {
+        //GET json data from /products from same server as this home AKA / AKA index.html file.
+        const response = await fetch("/products");
+        const data = await response.json(); // Parse
+        //CHAIN AWAIT DATA
+        all_products.innerHTML = "";
+        // LOOP THROUGH RECIEVED JAVASCRIPT ARRAY OF OBJECTS
+        data.forEach(addProduct);
+    }
+    updateProducts();
+</script>
