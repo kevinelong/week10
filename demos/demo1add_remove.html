@@ -1,0 +1,67 @@
+<style>
+    body{ 
+        background: #888888;
+        user-select: none;
+    }
+    .tile{
+        text-align: center;
+        width: 20vw;
+        height: 20vw;
+        max-width: 20vw;
+        max-height: 20vw;
+        background: silver;
+        display: inline-block;
+        margin: 0 1vw 1vw 0;
+        box-shadow: 0.25vw 0.25vw 1vw 1vw rgba(0,0,0,0.25) ;
+        position: relative;
+    }
+    .remove{
+        position: absolute;
+        top: 0.5vw;
+        right: 0.5vw;
+        background: white;
+        border-radius: 1vw;
+        height: 3vw;
+        width: 3vw;
+        font-size: 2vw;
+    }
+</style>
+<body>
+<div id="list"><div id="add" class="tile">+</div></div>
+</body>
+<script>
+    function addItem(){
+        const name = "";
+        listData.push({name:name});
+        appendTile(name, listData.length - 1);
+    }
+    add.addEventListener("click", addItem)
+    let listData = [
+        {
+            name:"Apple"
+        },
+        {
+            name:"Banana"
+        },
+        {
+            name:"Cherry"
+        },
+    ];
+    function onClickRemove(element){
+        const tile = element.parentElement;
+        tile.remove();
+        listData.splice(tile.id - 1, 1);
+        // console.log(e);
+    }
+    function appendTile(content, index){
+        const div = document.createElement("div");
+        div.classList.add("tile");
+        div.id = index;
+        div.innerHTML = content + `<div class="remove" onclick="onClickRemove(this);">x</div>`;
+        list.appendChild(div);
+    }
+    for(let i=0; i < listData.length; i++){
+        appendTile(listData[i].name, i+1)
+    } 
+
+</script>
