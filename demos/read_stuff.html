@@ -1,0 +1,11 @@
+<body>
+
+</body>
+<script>
+    const personObject = JSON.parse(localStorage.personText);
+    const d = new Date(personObject.myDate);
+    document.body.innerHTML = `
+        Hello ${personObject.firstName}  ${personObject.lastName}
+        is your birthday ${ d.toDateString() }? 
+    `;
+</script>
