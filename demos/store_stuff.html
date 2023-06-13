@@ -1,0 +1,20 @@
+<body>
+    <input id="firstName">
+    <input id="lastName">
+    <input id="myDate" type="date">
+    <button id="save">Save</button>
+</body>
+<script>
+    save.onclick = ()=>{
+        const d = new Date(myDate.value);
+
+        const personObject = {
+            firstName: firstName.value, 
+            lastName: lastName.value, 
+            myDate: d.getTime()
+        };
+
+        localStorage.personText = JSON.stringify(personObject);
+        window.location.href = "read_stuff.html";
+    }
+</script>
