@@ -1,0 +1,52 @@
+<body style="background:#333">
+    <canvas id="canvas" width="800" height="250" style="background-color: black;"></canvas>
+</body>
+<script>
+    const ctx = canvas.getContext('2d');
+
+    // set line stroke and line width
+    ctx.strokeStyle = 'green';
+    ctx.lineWidth = 1;
+
+    function line(x1, y1, x2, y2){
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+
+    data = []
+    value = 0
+
+    let half = Math.round(canvas.height / 2);
+    const dampen = 40;
+
+    function diff(){
+        return Math.round((Math.random() * canvas.height/dampen) - half/dampen);
+    }
+    
+    function delta(){ //DIFFERENCE as bell curve
+        return (diff() + diff() + diff()) / 3;
+    }
+    
+    for(i=0; i<canvas.width; i++){
+        value += delta();
+        data.push(value);
+    }
+
+    function loop(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for(i=0; i<canvas.width-1; i++){
+            value = data[i]
+            value2 = data[i+1]
+            line(i, value + half, i + 1, value2 + half)
+        }
+        
+        data.push(data[data.length-1] + delta()); //add new at end
+        data.shift() //remove first from beginning
+    
+        requestAnimationFrame(loop)
+    }
+    loop();
+</script>
