@@ -21,7 +21,7 @@ const list = [
     { first: "Kevin", last: "Long" }, 
     { first: "Martin", last: "King" }
 ];
-let mode = "standard"; //or "reverse"
+let mode = "reverse"; // "standard" or "reverse"
 
 //SOLUTIONS:
 
@@ -31,14 +31,14 @@ for(let i=0;i<list.length;i++){
     if(mode === "standard"){
         console.log(person.first + " " + person.last);
     }else{
-        console.log(person.last + ", " + person.last);    
+        console.log(person.last + ", " + person.first);    
     }
 }
 //8 lines
 
 // 2. Functional
-const standard = (a, b) => `${a} ${b}`;
-const reverse = (a, b) => `${b}, ${a}`;
+const standard = p => `${p.first} ${p.last}`;
+const reverse = p => `${p.last}, ${p.first}`;
 console.log(list.map(mode==="standard" ? standard : reverse).join("\n"));
 // 3 lines
 
