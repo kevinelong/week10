@@ -1,0 +1,21 @@
+<style> input, select, textarea, button { width: 100%; }</style>
+<body>
+    <label>END-POINT URL(LOCATIOR)/URI(IDENTIFIER) (WHERE TO SEND):</label><br>
+    <input id="endpoint" value="http://127.0.0.1:8083/api/todos"><br>
+    <label>BODY TO SEND (WHAT TO SEND):</label><br>
+    <textarea id="toSend"></textarea><br>
+    <label>METHOD (HOW TO SEND) HTTP VERBS:</label><br>
+    <select id="method" size="4">
+        <option value="POST"        >CREATE "POST"</option>
+        <option value="GET" selected>READ   "GET"</option>
+        <option value="PUT"         >UPDATE "PUT"</option>
+        <option value="DELETE"      >DELETE "DELETE")</option>
+    </select><br>
+    <hr>
+    <button id="go">fetch() (REQUEST)</button><br>
+    <hr>
+    <label>RESPONSE RECIEVED:</label><br>
+    <textarea id="toReceive"></textarea><br>
+</body>
+<script>
+</script>
