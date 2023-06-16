@@ -1,8 +1,6 @@
 //PARADIGMS (Models or Framworks of Thought)
 // Three primary paradigms plus a bonus
 
-const { REFUSED } = require("dns");
-
 // 1. Procedural (The classic and most common; one line after another)
 // 1b. Structured (Organizing with functions and modules)
 
